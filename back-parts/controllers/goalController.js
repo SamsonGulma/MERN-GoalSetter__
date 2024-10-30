@@ -1,6 +1,8 @@
 const getGoals = (requests, responds) => {
     responds.status(200).json({ 'message': 'Get Goals' })
-    console.log(requests.body)
+    if (!requests.body.text) {
+        responds.status(400).json({ message: "please add a text field" });
+    }
 };
 
 const setGoals = (requests, responds) => {
@@ -19,5 +21,5 @@ module.exports = {
     getGoals,
     setGoals,
     updateGoal,
-    deleteGoal
+    deleteGoal,
 };
