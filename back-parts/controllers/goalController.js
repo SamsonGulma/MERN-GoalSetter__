@@ -1,5 +1,6 @@
 const getGoals = (requests, responds) => {
     responds.status(200).json({ 'message': 'Get Goals' })
+    console.log(requests.body)
 };
 
 const setGoals = (requests, responds) => {
