@@ -7,11 +7,11 @@ const setGoals = (requests, responds) => {
 };
 
 const updateGoal = (requests, responds) => {
-    responds.status(200).json({ 'message': `Update Goal ${requests.param.id}` })
+    responds.status(200).json({ 'message': `Update Goal ${requests.params.id}` })
 };
 
 const deleteGoal = (requests, responds) => {
-    responds.status(200).json({ 'message': `Delete Goal ${requests.param.id}` })
+    responds.status(200).json({ 'message': `Delete Goal ${requests.params.id}` })
 };
 
 module.exports = {
