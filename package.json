@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon back-parts/server.js"
   },
-  "type": "module",
+  "type": "commonjs",
   "keywords": [],
   "author": "Samson Gulma",
   "license": "ISC",
