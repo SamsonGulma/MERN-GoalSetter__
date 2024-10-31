@@ -1,9 +1,9 @@
 const getGoals = (requests, responds) => {
     if (!requests.body.text) {
-        console.log(requests.body.text)
         responds.status(400).json({ 'message': "please add a text field" });
     }
     else {
+        console.log(requests.body)
         responds.status(200).json({ 'message': 'Get Goals' });
     }
 };
