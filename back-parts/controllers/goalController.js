@@ -1,6 +1,7 @@
 const getGoals = (requests, responds) => {
     if (!requests.body.text) {
         responds.status(400).json({ 'message': "please add a text field" });
+        throw new Error('Please add a text field; the text field value is empty.')
     }
     else {
         console.log(requests.body)
