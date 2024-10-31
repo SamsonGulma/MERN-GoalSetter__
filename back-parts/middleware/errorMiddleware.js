@@ -7,7 +7,7 @@ const errorHandler = (err, requests, responds, next) => {
 
     responds.json({
         message: err.message,
-        stack: process.env.NODE_ENV === 'production' ? null : err.stack,
+        check_what_Happend: process.env.NODE_ENV === 'production' ? null : err.stack,
     })
 }
 
