@@ -3,7 +3,7 @@ const getGoals = (requests, responds) => {
         responds.status(400).json({ message: "please add a text field" });
     }
     else {
-        responds.status(200).json({ 'message': 'Get Goals' })
+        responds.status(200).json({ 'message': 'Get Goals' });
     }
 };
 
