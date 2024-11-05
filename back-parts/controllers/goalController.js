@@ -1,4 +1,4 @@
-const getGoals = (requests, responds) => {
+const getGoals = async (requests, responds) => {
     if (!requests.body.text) {
         responds.status(400)
         throw new Error('Please add a text field; the text field value is empty.')
@@ -9,15 +9,15 @@ const getGoals = (requests, responds) => {
     }
 };
 
-const setGoals = (requests, responds) => {
+const setGoals = async (requests, responds) => {
     responds.status(200).json({ 'message': 'Set Goal' })
 };
 
-const updateGoal = (requests, responds) => {
+const updateGoal = async (requests, responds) => {
     responds.status(200).json({ 'message': `Update Goal ${requests.params.id}` })
 };
 
-const deleteGoal = (requests, responds) => {
+const deleteGoal = async (requests, responds) => {
     responds.status(200).json({ 'message': `Delete Goal ${requests.params.id}` })
 };
 
