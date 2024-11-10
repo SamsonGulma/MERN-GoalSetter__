@@ -2,41 +2,59 @@ const asyncHandler = require('express-async-handler')
 const Goal = require('../models/goalModel.js');
 const { request } = require('express');
 
-const getGoals = asyncHandler(async (requests, responds) => {
+const getGoals = asyncHandler(async (req, res) => {
     const goals = await Goal.find()
-
-    if (!requests.body.text) {
-        responds.status(400)
-        throw new Error('Please add a text field; the text field value is empty.')
+            res.status(200).json(goals);
     }
-    else {
-        console.log(requests.body)
-        responds.status(200).json(goals);
-    }
-});
+);
 
-const setGoal = asyncHandler(async (requests, responds) => {
-     if (!requests.body.text) {
-        responds.status(400)
+
+
+const setGoals = asyncHandler(async (req, res) => {
+     if (!req.body.text) {
+        res.status(400)
         throw new Error('Please add a text field; the text field value is empty.')
      }
     const goal = await Goal.create({
-        text: requests.body.text,
+        text: req.body.text,
     })
-    responds.status(200).json(goal)
+    res.status(200).json(goal)
 });
 
-const updateGoal = asyncHandler(async (requests, responds) => {
-    responds.status(200).json({ 'message': `Update Goal ${requests.params.id}` })
+
+
+const updateGoal = asyncHandler(async (req, res) => {
+    const goal = await Goal.findById(req.params.id)
+
+    if (!goal) {
+        res.status(400)
+        throw new Error('Goal not found')
+    }
+
+    const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        
+    })
+
+    res.status(200).json(updatedGoal)
 });
 
-const deleteGoal = asyncHandler(async (requests, responds) => {
-    responds.status(200).json({ 'message': `Delete Goal ${requests.params.id}` })
+
+
+const deleteGoal = asyncHandler(async (req, res) => {
+    const goal = await Goal.findByIdAndDelete(req.params.id)
+
+    if (!goal) {
+        res.status(400)
+        throw new Error('Goal not found')
+    }
+
+    res.status(200).json({ id: req.params.id })
 });
 
 module.exports = {
     getGoals,
-    setGoal,
+    setGoals,
     updateGoal,
     deleteGoal,
 };
