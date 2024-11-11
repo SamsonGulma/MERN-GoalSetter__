@@ -9,6 +9,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000
 
+//the database connection
 connectDB()
 
 app.use(express.json());
